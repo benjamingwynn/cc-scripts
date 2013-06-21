@@ -61,7 +61,7 @@ function menu()
   print("")
   print("auto collect, full enchant, min enchant, enchant,")
   print("collect")
-  if autocollect == "true"
+  if autocollect == "true" then
     print("--> PICKING UP XP <--")
   else
     print("")
