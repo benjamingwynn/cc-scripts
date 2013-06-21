@@ -57,26 +57,20 @@ function menu()
   print("IXPT " .. version)
   print("Xenxier")
   print("")
-  print("")
-  print("Commands Avaliable:")
+  print("Commands:")
   print("")
   print("auto collect, full enchant, min enchant, enchant,")
   print("collect")
+  print("")
   if autocollect == "true" then
     print("--> PICKING UP XP <--")
   else
     print("")
   end
   print("")
-  print("About:")
-  print("")
-  print("A better interface for the XP turtle from Misc")
-  print("Peripherals. Type about for more information.")
-  print("")
-  print("")
   print("")
   print("Please type a command: ")
--- ------------------- CONSOLE TEXT WIDTH ----------------
+-- ---------- CONSOLE TEXT WIDTH -------------
  
   cmd = read()
  
@@ -119,16 +113,12 @@ function aboutProgram()
   print("Xenxier's Interactive XP Turtle")
   print("Version " .. version)
   print("")
-  print("This was basically created because I didn't")
-  print("want to use the LUA prompt every time I used")
-  print("my XP turtle. This doesn't do everything that")
-  print("the XP turtle offers, but it covers the most")
-  print("common used featuers.")
+  print("This was basically created because I didn't want to use the LUA prompt every time I used my XP turtle. This doesn't do everything that the XP turtle offers, but it covers the most commonly used featuers.")
   print("")
   print("Github:")
   print("www.github.com/benjamingwynn/cc-scripts/ixpt")
   anyKey()
--- ------------------- CONSOLE TEXT WIDTH ----------------
+-- ---------- CONSOLE TEXT WIDTH -------------
 end
 
 
@@ -146,7 +136,7 @@ function toggleCollectDecide()
     print("Resolving...")
     autoCollect=true
     anyKey()
-  
+
   end
 
 end
