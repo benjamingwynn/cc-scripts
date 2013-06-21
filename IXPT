@@ -133,10 +133,10 @@ end
 
 function toggleCollectDecide()
 
-  if autoCollect=true then
+  if autoCollect == true then
     toggleCollectOff()
 
-  elseif autoCollect=false then
+  elseif autoCollect == false then
     toggleCollectOn()
 
   else
