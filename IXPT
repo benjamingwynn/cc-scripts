@@ -1,0 +1,167 @@
+-- Interactive XP turtle
+-- Created by Xenxier (Benjamin Gwynn)
+
+-- How to get this code: pastebin get xxxxxxxxx startup
+
+function startup()
+  xp = peripheral.wrap("right")
+  version = 0.1
+  toggleCollectOff()
+end
+
+function.collectXp()
+  xp.collect()
+end
+
+function fullEnchant()
+  xp.enchant(30)
+end
+
+function smallEnchant()
+  xp.enchant(1)
+end
+
+function customEnchant()
+  print("Enter level number to Enchant with: ")
+  lvl = read()
+  if lvl == "" then
+    print("")
+    print("Please enter a number...")
+    anyKey()
+    customEnchant()
+  else
+    xp.enchant(lvl)
+    lvl = 0
+end
+
+function toggleCollectOn()
+  xp.setAutoCollect(true)
+  autocollect=true
+end
+
+function toggleCollectOff()
+  xp.setAutoCollect(false)
+  autocollect=false
+end
+
+function printStats()
+  print("Current Level: ")
+  xp.getLevels()
+  anyKey()
+end
+
+function menu()
+  term.clear()
+ 
+  print("IXPT " .. version)
+  print("Xenxier")
+  print("")
+  print("")
+  print("Commands Avaliable:")
+  print("")
+  print("auto collect, full enchant, min enchant, enchant,")
+  print("collect")
+  if autocollect == "true"
+    print("--> PICKING UP XP <--")
+  else
+    print("")
+  end
+  print("")
+  print("About:")
+  print("")
+  print("A better interface for the XP turtle from Misc")
+  print("Peripherals. Type about for more information.")
+  print("")
+  print("")
+  print("")
+  print("Please type a command: ")
+-- ------------------- CONSOLE TEXT WIDTH ----------------
+ 
+  cmd = read()
+ 
+  print("")
+end
+
+
+function cmdFind()
+
+  if cmd == "about" then
+    aboutProgram()
+
+   elseif cmd == "full enchant" then
+    fullEnchant()
+
+   elseif cmd == "min enchant" then
+    smallEnchant()
+
+   elseif cmd == "enchant" then
+    customEnchant()
+
+   elseif cmd == "auto collect" then
+    toggleCollectDecide()
+
+   elseif cmd == "collect" then
+    collectXp()
+   
+   else
+    print("Unknown Command.")
+    anyKey()
+    menu()
+
+  end
+
+end
+
+
+function aboutProgram()
+  clear()
+  print("Xenxier's Interactive XP Turtle")
+  print("Version " .. version)
+  print("")
+  print("This was basically created because I didn't")
+  print("want to use the LUA prompt every time I used")
+  print("my XP turtle. This doesn't do everything that")
+  print("the XP turtle offers, but it covers the most")
+  print("common used featuers.")
+  print("")
+  print("Github:")
+  print("www.github.com/benjamingwynn/cc-scripts/ixpt")
+  anyKey()
+-- ------------------- CONSOLE TEXT WIDTH ----------------
+end
+
+
+function toggleCollectDecide()
+
+  if autoCollect=true then
+    toggleCollectOff()
+
+  elseif autoCollect=false then
+    toggleCollectOn()
+
+  else
+    print("FIX ME")
+    print("autoCollect is neither true nor false.")
+    print("Resolving...")
+    autoCollect=true
+    anyKey()
+
+end
+
+
+function anyKey()
+    print("")
+    print("Press any key to return to menu..")
+    read()
+end
+
+-- functions in order
+
+startup()
+
+-- If a function 'ends' then recall menu().
+
+while true do
+  menu()
+end
+
