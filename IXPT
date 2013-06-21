@@ -9,7 +9,7 @@ function startup()
   toggleCollectOff()
 end
 
-function.collectXp()
+function collectXp()
   xp.collect()
 end
 
