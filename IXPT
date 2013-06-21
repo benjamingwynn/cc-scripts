@@ -145,6 +145,8 @@ function toggleCollectDecide()
     print("Resolving...")
     autoCollect=true
     anyKey()
+  
+  end
 
 end
 
