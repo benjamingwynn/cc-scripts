@@ -32,6 +32,7 @@ function customEnchant()
   else
     xp.enchant(lvl)
     lvl = 0
+  end
 end
 
 function toggleCollectOn()
