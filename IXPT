@@ -1,24 +1,24 @@
 -- Interactive XP turtle
 -- Created by Xenxier (Benjamin Gwynn)
 
--- How to get this code: pastebin get xxxxxxxxx startup
+-- copy from github raw into world/computer/(computer id)
 
 function startup()
-  xp = peripheral.wrap("right")
-  version = 0.1
-  toggleCollectOff()
+  x = peripheral.wrap("right")
+  version = "0.2"
+  toggleCollectOn()
 end
 
 function collectXp()
-  xp.collect()
+  x.collect()
 end
 
 function fullEnchant()
-  xp.enchant(30)
+  x.enchant(30)
 end
 
 function smallEnchant()
-  xp.enchant(1)
+  x.enchant(1)
 end
 
 function customEnchant()
@@ -30,24 +30,24 @@ function customEnchant()
     anyKey()
     customEnchant()
   else
-    xp.enchant(lvl)
+    x.enchant(lvl)
     lvl = 0
   end
 end
 
 function toggleCollectOn()
-  xp.setAutoCollect(true)
-  autocollect=true
+  x.setAutoCollect(true)
+  autoCollect = "true"
 end
 
 function toggleCollectOff()
-  xp.setAutoCollect(false)
-  autocollect=false
+  x.setAutoCollect(false)
+  autoCollect = "false"
 end
 
 function printStats()
-  print("Current Level: ")
-  xp.getLevels()
+  currentLevel = x.getLevels()
+  print("Current Level: " .. currentLevel)
   anyKey()
 end
 
@@ -59,13 +59,15 @@ function menu()
   print("")
   print("Commands:")
   print("")
-  print("auto collect, full enchant, min enchant, enchant,")
-  print("collect")
+  print("auto collect, full enchant, stats")
+  print("min enchant, enchant, collect")
   print("")
-  if autocollect == "true" then
+  if autoCollect == "true" then
     print("--> PICKING UP XP <--")
-  else
+  elseif autoCollect == "false" then
     print("")
+  else
+    print("autoCollect errored out.")
   end
   print("")
   print("")
@@ -97,6 +99,9 @@ function cmdFind()
 
    elseif cmd == "collect" then
     collectXp()
+
+   elseif cmd == "stats" then
+    printStats()
    
    else
     print("Unknown Command.")
@@ -124,17 +129,17 @@ end
 
 function toggleCollectDecide()
 
-  if autoCollect == true then
+  if autoCollect == "true" then
     toggleCollectOff()
 
-  elseif autoCollect == false then
+  elseif autoCollect == "false" then
     toggleCollectOn()
 
   else
     print("FIX ME")
     print("autoCollect is neither true nor false.")
     print("Resolving...")
-    autoCollect=true
+    autoCollect = "false"
     anyKey()
 
   end
@@ -144,17 +149,22 @@ end
 
 function anyKey()
     print("")
-    print("Press any key to return to menu..")
-    read()
+    print("Press enter to return to menu...")
+    read("")
+    -- a = read("")
+    -- a = read()
+    -- a = ""
 end
 
 -- functions in order
 
 startup()
 
--- If a function 'ends' then recall menu().
+-- Loop loading the menu and checking if a known command was run.
 
 while true do
   menu()
+  cmdFind()
+  -- sleep(1)
 end
 
