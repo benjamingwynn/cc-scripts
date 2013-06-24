@@ -1,0 +1,20 @@
+-- XCCDJ Client
+-- Coded by Xenxier (Benjamin Gwynn)
+
+
+rednet.open("right")
+
+while true do
+
+  senderID, message, distance = rednet.receive()
+  print(message)
+
+  if message == "13" then
+    shell.run("dj")
+  end
+
+  if message == "stop" then
+    shell.run("dj stop")
+  end
+
+end
