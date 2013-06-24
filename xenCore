@@ -1,8 +1,21 @@
 -- xenCore API
 -- Xenxier
 
--- Load using 'os.loadAPI("exampleAPI")'
+-- Install by saving this code as 'xenCore' in your programs folder.
+
+
+-- Load using the following code:
+
+-- os.loadAPI("xenCore")
+-- appName = myCoolApp
+-- appVersion = 2.56
+-- requestedCoreVer=0.1
+-- xenCore.xenCore()
+
+
 -- Call functions using 'xenCore.functionName'
+
+aboutCore()
 
 -- > API CORE
 
@@ -13,28 +26,49 @@ end
 
 function testVar()
 
-  if appName == "true" then
-    print("init: appName: " .. appname)
-  else
+  if appName == "" then
     incompatibleApp()
+  else
+    print("init: appName: " .. appname)
   end
 
-  if requestedVer == coreVer then
-    print("init: got requested ver")
-  elseif requestedVer>coreVer then
+  if appVersion == "" then
+    incompatibleApp()
+  else
+    print("init: appVersion: " .. appname)
+  end
+
+  if requestedCoreVer == coreVer then
+    print("init: got requested api ver")
+  elseif requestedCoreVer>requestedCoreVer then
     outdatedCore()
-  elseif requestedVer<coreVer then
+  elseif requestedCoreVer<requestedCoreVer then
     outdatedApp()
 end
 
 function incompatableApp()
-  print("Missing Variable! Please update your application before calling xenCore.")
+  print("This application isn't compatible with xenCore.")
+  print("Developers: Please state all required variables before calling xenCore.")
   pause()
+  termCore()
 end
 
-function outdatedApp()
-  print("Missing Variable! Please update your application before calling xenCore.")
+function olderCore()
+  print(appName .. " requires you to update xenCore for it to run.")
+  print("This application requires xenCore " .. requestedCoreVer .. " to run. You are using version " .. coreVer)
   pause()
+  termCore()
+end
+
+function newerCore()
+  if specificCoreVer == "true" then
+    print(appName .. " requires an older version of xenCore for it to run.")
+    print("This application requires xenCore " .. requestedCoreVer .. " to run. You are using version " .. coreVer)
+    pause()
+    termCore()
+  else
+    print("init: app requested older core version, ignoring.")
+  end
 end
 
 -- > API FEATURES
