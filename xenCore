@@ -1,0 +1,60 @@
+-- xenCore API
+-- Xenxier
+
+-- Load using 'os.loadAPI("exampleAPI")'
+-- Call functions using 'xenCore.functionName'
+
+-- > API CORE
+
+function xenCore()
+  coreVer=0.1
+  testVar()
+end
+
+function testVar()
+
+  if appName == "true" then
+    print("init: appName: " .. appname)
+  else
+    incompatibleApp()
+  end
+
+  if requestedVer == coreVer then
+    print("init: got requested ver")
+  elseif requestedVer>coreVer then
+    outdatedCore()
+  elseif requestedVer<coreVer then
+    outdatedApp()
+end
+
+function incompatableApp()
+  print("Missing Variable! Please update your application before calling xenCore.")
+  pause()
+end
+
+function outdatedApp()
+  print("Missing Variable! Please update your application before calling xenCore.")
+  pause()
+end
+
+-- > API FEATURES
+
+function menu()
+  term.clear()
+  print(appName .. version)
+  print("xenCore menu")
+  print("")
+  print("Commands:")
+  print("")
+  print(commands)
+  print("")
+  print("")
+  print("")
+  print("")
+  print("")
+  print("Please type a command: ")
+  cmd = read()
+  print("")
+end
+
+function clear()
