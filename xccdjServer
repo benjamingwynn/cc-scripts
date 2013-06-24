@@ -1,0 +1,155 @@
+-- XCCDJ Server
+-- Coded by Xenxier (Benjamin Gwynn)
+
+-- start
+
+function start()
+  modem = peripheral.wrap("right")
+  monitor = peripheral.wrap("top")
+  version = 0.2
+  rednet.open("right")
+end
+
+-- menu
+
+function menu()
+  term.clear()
+
+  print("XCCDJ " .. version)
+  print("Xenxier")
+  print("")
+  print("")
+  print("Disks Avaliable:")
+  print("")
+  print("13, cat, blocks, chrip, far, mall, mellohi, stal,")
+  print("strad, ward, 11, wait")
+  print("")
+  print("")
+  print("About:")
+  print("")
+  print("Type any music disk above and let this program")
+  print("do the rest for you. Type about for more info")
+  print("")
+  print("")
+  print("")
+  print("Please type a song to play:")
+
+  song = read()
+
+  print("")
+end
+
+-- songFind
+
+function songFind()
+
+  if song == "about" then
+    aboutXccdj()
+
+   elseif song == "13" then
+    playSong()
+    songDuration = 180
+
+   elseif song == "cat" then
+    playSong()
+    songDuration = 190
+
+   elseif song == "blocks" then
+    playSong()
+    songDuration = 350
+
+   elseif song == "chirp" then
+    playSong()
+    songDuration = 190
+
+   elseif song == "far" then
+    playSong()
+    songDuration = 180
+
+   elseif song == "mall" then
+    playSong()
+    songDuration = 200
+
+   elseif song == "mellohi" then
+    playSong()
+    songDuration = 100
+
+   elseif song == "stal" then
+    playSong()
+    songDuration = 160
+
+   elseif song == "strad" then
+    playSong()
+    songDuration = 190
+
+   elseif song == "ward" then
+    playSong()
+    songDuration = 260
+
+   elseif song == "11" then
+    playSong()
+    songDuration = 80
+
+   elseif song == "wait" then
+    playSong()
+    songDuration = 240
+
+   elseif song == "test" then
+    playSong()
+    songDuration = 5
+    
+   else
+    print("Unknown Song. Returning to Menu.")
+    sleep(2)
+    menu()
+  end
+
+end
+
+
+-- playSong
+
+function playSong()
+    for pc = 1, 99 do
+       rednet.send(pc, song)
+    end
+end
+
+-- monDisplay
+
+function monDisplay()
+  monitor.setTextScale(5)
+  monitor.write("Now Playing:")
+  monitor.setCursorPos(1,2)
+  monitor.write(song)
+  print("Now Playing: " .. song)
+end
+
+-- monClear
+
+function monClear()
+  monitor.setTextScale(1)
+  monitor.clear()
+  monitor.setCursorPos(1,1)
+  print("Monitor Cleared")
+end
+
+-- aboutXccdj
+
+function aboutXccdj()
+  print("Xenxier's Computer Craft DJ")
+  print("Version " .. version)
+end
+
+-- call and run functions in order
+
+
+start()
+
+while true do
+  monClear()
+  menu()
+  songFind()
+  monDisplay()
+  sleep(songDuration)
+end
