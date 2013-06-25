@@ -3,47 +3,71 @@
 
 -- Install by saving this code as 'xenCore' in your programs folder.
 
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 -- Load using the following code:
 
 -- os.loadAPI("xenCore")
--- appName = myCoolApp
--- appVersion = 2.56
--- requestedCoreVer=0.1
+-- appName = "myCoolApp"
+-- appVersion = "2.56"
+-- requestedCoreVer = "0.1"
 -- xenCore.xenCore()
 
-
 -- Call functions using 'xenCore.functionName'
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+-- If xenCore is ran as an application do:
 
 aboutCore()
 
 -- > API CORE
 
 function xenCore()
-  coreVer=0.1
+  coreVer = "0.1"
   testVar()
 end
 
+function aboutCore()
+  print("xenCore " .. coreVer)
+  print("")
+  print("A robust ComputerCraft API for holding common functions that would otherwise be copied between programs.")
+  print("")
+  print("Coded by: Benjamin Gwynn (Xenxier)")
+  pause()
+  termCore()
+end
+
 function testVar()
-
-  if appName == "" then
-    incompatibleApp()
+  if ignoreMissingAPIStrings == "true" then
+    print("init: ignoring missing API strings. This is not recommended.")
   else
-    print("init: appName: " .. appname)
-  end
+    if appName == "" then
+      incompatibleApp()
+    else
+      print("init: appName: " .. appname)
+    end
 
-  if appVersion == "" then
-    incompatibleApp()
-  else
-    print("init: appVersion: " .. appname)
+    if appVersion == "" then
+      incompatibleApp()
+    else
+      print("init: appVersion: " .. appname)
+    end
+    
+    if requestedCoreVer == coreVer then
+      print("init: got requested api ver")
+    elseif requestedCoreVer == "" then
+      print("NO SPECIFIC API VERSION REQUESTED")
+      print("Developers: Fix this by setting requestedCoreVer or temporarily enabling ignoreMissingAPIStrings.")
+      print("")
+      pause()
+      termCore()
+    elseif requestedCoreVer>requestedCoreVer then
+      outdatedCore()
+    elseif requestedCoreVer<requestedCoreVer then
+      outdatedApp()
+    end
   end
-
-  if requestedCoreVer == coreVer then
-    print("init: got requested api ver")
-  elseif requestedCoreVer>requestedCoreVer then
-    outdatedCore()
-  elseif requestedCoreVer<requestedCoreVer then
-    outdatedApp()
 end
 
 function incompatableApp()
@@ -72,6 +96,18 @@ function newerCore()
 end
 
 -- > API FEATURES
+
+function pause()
+    print("")
+    print("Press enter to return to menu...")
+    read("")
+end
+
+-- anyKey() will perform different to pause() in the near-future. Try to avoid using anyKey() until it is finished.
+
+function anyKey()
+    pause()
+end
 
 function menu()
   term.clear()
