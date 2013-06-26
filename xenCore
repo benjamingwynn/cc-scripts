@@ -13,6 +13,21 @@
 -- requestedCoreVer = "0.1"
 -- xenCore.xenCore()
 
+
+-- How to use menu:
+
+-- (load api with code above)
+-- 
+-- commands = "command1 command2 command3"
+--
+-- while true do
+--   xenCore.menu()
+-- end
+--
+-- function command1()
+--   print("Command1 Output")
+-- end
+
 -- Call functions using 'xenCore.functionName'
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -40,7 +55,7 @@ end
 
 function testVar()
   if ignoreMissingAPIStrings == "true" then
-    print("init: ignoring missing API strings. This is not recommended.")
+    print("init: ignoring missing API strings. This is not recommended!")
   else
     if appName == "" then
       incompatibleApp()
@@ -51,21 +66,21 @@ function testVar()
     if appVersion == "" then
       incompatibleApp()
     else
-      print("init: appVersion: " .. appname)
+      print("init: appVersion: " .. appVersion)
     end
     
     if requestedCoreVer == coreVer then
-      print("init: got requested api ver")
+      print("init: requestedCoreVer:" .. requestedCoreVer)
     elseif requestedCoreVer == "" then
       print("NO SPECIFIC API VERSION REQUESTED")
       print("Developers: Fix this by setting requestedCoreVer or temporarily enabling ignoreMissingAPIStrings.")
       print("")
       pause()
       termCore()
-    elseif requestedCoreVer>requestedCoreVer then
-      outdatedCore()
-    elseif requestedCoreVer<requestedCoreVer then
-      outdatedApp()
+    elseif requestedCoreVer > coreVer then
+      olderCore()
+    elseif requestedCoreVer < coreVer then
+      newerCore()
     end
   end
 end
@@ -95,6 +110,18 @@ function newerCore()
   end
 end
 
+function termCore()
+  print("Program terminated due to an xenCore error.")
+  os.exit
+end
+
+function todo()
+  print("This function is not avaliable in this version of xenCore.")
+  print("")
+  pause()
+  termCore()
+end
+
 -- > API FEATURES
 
 function pause()
@@ -103,7 +130,7 @@ function pause()
     read("")
 end
 
--- anyKey() will perform different to pause() in the near-future. Try to avoid using anyKey() until it is finished.
+-- anyKey() will perform different to pause() in the near-future. Try to avoid using anyKey() until it is implanted.
 
 function anyKey()
     pause()
@@ -111,20 +138,22 @@ end
 
 function menu()
   term.clear()
-  print(appName .. version)
-  print("xenCore menu")
+  print(appName .. " " .. appVersion)
+  print("xenCore " .. coreVer)
   print("")
   print("Commands:")
   print("")
-  print(commands)
-  print("")
-  print("")
-  print("")
+  for friendlyCommandListString in string.gmatch(commands, ", ") do
+    print(friendlyCommandListString)
+  end
   print("")
   print("")
   print("Please type a command: ")
-  cmd = read()
+  commandInput = read()
   print("")
+  commandFind()
 end
 
-function clear()
+function commandFind()
+  todo()
+end
